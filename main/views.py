@@ -17,7 +17,7 @@ def index(request):
     return render(request,'main/question_list.html',info) #context 데이터를 해당 html 파일에 적용
 
 def detail(request, question_id):       #question_id는 url 매핑에 의해 전달
-    question = get_object_or_404(Question, pk=question_id)  #ㅑid에 해ㅏㅇ하는 객체 없으면 404error
+    question = get_object_or_404(Question, pk=question_id)  #id에 해당하는 객체 없으면 404error
     info = {'question': question}
     return render(request, 'main/question_detail.html', info)
 
@@ -32,7 +32,7 @@ def answer_create(request, question_id):
             answer.question = question
             answer.author=request.user
             answer.save()
-            return redirect('main:detail', question_id=question.id) #답변 생성후 id에 해당하는 detail url로 이동
+            return redirect('main:detail', question_id=question.id) #답변 생성후 
     else:
         form = AnswerForm()
     context = {'question': question, 'form': form}
